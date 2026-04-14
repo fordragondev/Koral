@@ -44,7 +44,14 @@ First vertical: aquariums at `aquariumcommu.com`.
 - **D-18:** Branding is fully config-driven. A `tenants` table row defines all visual identity for each vertical — no code changes required to spin up a new vertical's branding.
 - **D-19:** v1 branding scope includes: color palette (primary + accent colors, applied as CSS custom properties), logo + favicon, homepage hero/background imagery, and custom tagline + copy.
 - **D-20:** Branding is applied via CSS custom properties on the root layout so every component inherits the vertical's theme without prop drilling.
-- **D-21:** aquariumcommu.com visual direction: **deep ocean — dark backgrounds, teal/cyan accents**. Inspired by deep-water aesthetics. Dark mode first.
+- **D-21:** aquariumcommu.com visual direction: **deep ocean — dark + teal/cyan**. Two modes: dark (deep water) and light (bright reef). Both must look intentional, not just an inverted palette.
+
+### Dark / Light Mode
+- **D-27:** Both dark and light modes are supported from Phase 1. Not optional theming — both are designed intentionally per vertical.
+- **D-28:** Default on first visit: follow the OS/system preference (`prefers-color-scheme`). No forced default.
+- **D-29:** User can toggle dark/light via a sun/moon icon in the navigation bar, placed alongside the EN | ES language toggle.
+- **D-30:** Preference is saved to `localStorage` immediately (works for logged-out visitors). When the user signs in, the preference syncs to their account and is restored on future visits across devices.
+- **D-31:** Mode is implemented via a `data-theme` attribute on `<html>` (or a `.dark` class for Tailwind dark mode). CSS custom properties define color tokens for both modes — the per-vertical palette provides two sets of values (dark variant + light variant).
 
 ### Tenant Routing
 - **D-22:** Domain/host → tenant resolution happens in Next.js Edge Middleware. Each incoming request reads the `host` header, looks up the tenant in Vercel Edge Config (sub-ms read), and stamps `x-tenant-id` into request headers for use by RSC and route handlers.
@@ -68,7 +75,7 @@ First vertical: aquariums at `aquariumcommu.com`.
 <specifics>
 ## Specific Ideas
 
-- Aquarium theme: dark backgrounds + teal/cyan — "deep ocean" feel. Dark mode is the primary mode, not an option.
+- Aquarium theme: deep ocean — dark + teal/cyan for dark mode, bright reef feel for light mode. Both modes designed intentionally, not just palette inversions.
 - The 6-digit OTP input should feel snappy — auto-advance between digit fields, auto-submit on last digit entry, no separate submit button needed.
 - Language toggle in the nav bar should be a simple `EN | ES` text toggle, not a dropdown with flag icons.
 - The "code on first visit" model means the platform feels frictionless after first sign-in — users on mobile especially should not be re-entering codes repeatedly.
