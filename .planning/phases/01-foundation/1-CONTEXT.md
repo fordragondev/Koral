@@ -6,7 +6,7 @@
 <domain>
 ## Phase Boundary
 
-Build the multi-tenant shell that every subsequent phase depends on: per-domain routing and tenant resolution, per-domain account silos (same email = independent account per vertical), bilingual EN/ES with path-based locale routing, the 4-tier product hierarchy baked into the schema (Community → Local Groups → Verified Creators → Members), and per-vertical branding via a config-driven theming system. No content features, no feeds, no social graph — just the foundation.
+Build the multi-tenant shell that every subsequent phase depends on: per-domain routing and tenant resolution, per-domain account silos (same email = independent account per vertical), bilingual EN/ES with path-based locale routing, the 4-tier product hierarchy baked into the schema (Community → Groups → Verified Creators → Members), and per-vertical branding via a config-driven theming system. No content features, no feeds, no social graph — just the foundation.
 
 First vertical: aquariums at `aquariumcommu.com`.
 
@@ -59,8 +59,15 @@ First vertical: aquariums at `aquariumcommu.com`.
 - **D-24:** New verticals are activated by adding a row to the `tenants` config table and an entry in Vercel Edge Config — no code deployment required.
 
 ### Product Hierarchy Schema
-- **D-25:** The 4-tier hierarchy (Community → Local Groups → Verified Creators → Members) is baked into the DB schema in Phase 1 even though the reputation loop (points, auto-promotion, badges) ships in Phase 3.
+- **D-25:** The 4-tier hierarchy (Community → Groups → Verified Creators → Members) is baked into the DB schema in Phase 1 even though the reputation loop (points, auto-promotion, badges) ships in Phase 3.
 - **D-26:** Avoids a schema migration later. Hierarchy-related columns that aren't yet used by the UI can be nullable or zero-defaulted until Phase 3 activates them.
+
+### Group Model (replaces "Local Groups")
+- **D-32:** Geographic groups (country/city nodes) are **not** part of the group model. Creating country or city-level containers would fragment the community — aquarium hobbyists everywhere should interact in one unified feed.
+- **D-33:** Groups are **interest/activity based**, not geographic. Examples: "Planted Tank Enthusiasts", "Saltwater Beginners", "Monthly Fish Swap NYC". Location is an optional field on a group, not a required parent container.
+- **D-34:** Geography is a property of **events only** — events have a city/country tag so users can discover local meetups. No geographic group hierarchy exists.
+- **D-35:** Any member can create a group. Groups have: name, description, optional location, cover photo, and a dedicated chat room for members.
+- **D-36:** The `groups` table in the schema drops the required `city/region` column from the original requirements — location is `nullable`. This overrides GRP-01 in REQUIREMENTS.md (flagged for update).
 
 ### Claude's Discretion
 - Auth.js v5 specific session configuration and cookie settings

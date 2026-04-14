@@ -30,12 +30,12 @@ Requirements for the first shippable vertical: aquariums (aquariumcommu.com).
 - [ ] **PROF-03**: User can follow and unfollow other users
 - [ ] **PROF-04**: User can view another user's public profile
 
-### Local Groups
+### Groups
 
-- [ ] **GRP-01**: Users can create a Local Group with name, description, city/region, and cover photo
-- [ ] **GRP-02**: Users can request to join a Local Group
+- [ ] **GRP-01**: Users can create a Group with name, description, optional location, and cover photo — groups are interest/activity based, not geographic containers
+- [ ] **GRP-02**: Users can request to join a Group
 - [ ] **GRP-03**: Group admin can approve or reject join requests
-- [ ] **GRP-04**: Each Local Group has a dedicated real-time chat room (members only)
+- [ ] **GRP-04**: Each Group has a dedicated real-time chat room (members only)
 - [ ] **GRP-05**: Group members can post event listings (title, date, location, description) — no RSVP system in v1
 
 ### Content
