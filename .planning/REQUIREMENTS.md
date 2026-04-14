@@ -165,8 +165,6 @@ Deferred to future release. Tracked but not in current roadmap.
 
 ## Traceability
 
-Populated during roadmap creation.
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | AUTH-01 | Phase 1 | Pending |
@@ -179,14 +177,6 @@ Populated during roadmap creation.
 | TENT-02 | Phase 1 | Pending |
 | TENT-03 | Phase 1 | Pending |
 | TENT-04 | Phase 1 | Pending |
-| HIER-02 | Phase 3 | Pending |
-| HIER-03 | Phase 3 | Pending |
-| HIER-04 | Phase 3 | Pending |
-| HIER-05 | Phase 3 | Pending |
-| PROF-01 | Phase 3 | Pending |
-| PROF-02 | Phase 3 | Pending |
-| PROF-03 | Phase 3 | Pending |
-| PROF-04 | Phase 3 | Pending |
 | CONT-01 | Phase 2 | Pending |
 | CONT-02 | Phase 2 | Pending |
 | CONT-03 | Phase 2 | Pending |
@@ -195,29 +185,37 @@ Populated during roadmap creation.
 | CONT-06 | Phase 2 | Pending |
 | CONT-07 | Phase 2 | Pending |
 | CONT-08 | Phase 2 | Pending |
-| DISC-01 | Phase 3 | Pending |
-| DISC-02 | Phase 2 | Pending |
-| DISC-03 | Phase 3 | Pending |
-| DISC-04 | Phase 3 | Pending |
-| GRP-01 | Phase 4 | Pending |
-| GRP-02 | Phase 4 | Pending |
-| GRP-03 | Phase 4 | Pending |
-| GRP-04 | Phase 4 | Pending |
-| GRP-05 | Phase 4 | Pending |
 | SEO-01 | Phase 2 | Pending |
 | SEO-02 | Phase 2 | Pending |
-| NOTF-01 | Phase 5 | Pending |
-| NOTF-02 | Phase 5 | Pending |
-| REAL-01 | Phase 5 | Pending |
-| REAL-02 | Phase 4 | Pending |
-| REAL-03 | Phase 5 | Pending |
+| SHAR-01 | Phase 2 | Pending |
+| DISC-02 | Phase 2 | Pending |
+| PROF-01 | Phase 3 | Pending |
+| PROF-02 | Phase 3 | Pending |
+| PROF-03 | Phase 3 | Pending |
+| PROF-04 | Phase 3 | Pending |
+| HIER-02 | Phase 3 | Pending |
+| HIER-03 | Phase 3 | Pending |
+| HIER-04 | Phase 3 | Pending |
+| HIER-05 | Phase 3 | Pending |
+| DISC-01 | Phase 3 | Pending |
+| DISC-03 | Phase 3 | Pending |
+| DISC-04 | Phase 3 | Pending |
 | MODR-01 | Phase 4 | Pending |
 | MODR-02 | Phase 4 | Pending |
 | MODR-03 | Phase 4 | Pending |
 | MODR-04 | Phase 4 | Pending |
+| GRP-01 | Phase 5 | Pending |
+| GRP-02 | Phase 5 | Pending |
+| GRP-03 | Phase 5 | Pending |
+| GRP-04 | Phase 5 | Pending |
+| GRP-05 | Phase 5 | Pending |
+| REAL-01 | Phase 5 | Pending |
+| REAL-02 | Phase 5 | Pending |
+| REAL-03 | Phase 5 | Pending |
+| NOTF-01 | Phase 5 | Pending |
+| NOTF-02 | Phase 5 | Pending |
 | CTBR-01 | Phase 6 | Pending |
 | CTBR-02 | Phase 6 | Pending |
-| SHAR-01 | Phase 2 | Pending |
 | SHAR-02 | Phase 6 | Pending |
 
 **Coverage:**
@@ -227,4 +225,4 @@ Populated during roadmap creation.
 
 ---
 *Requirements defined: 2026-04-13*
-*Last updated: 2026-04-13 after initial definition*
+*Last updated: 2026-04-13 after roadmap creation*
