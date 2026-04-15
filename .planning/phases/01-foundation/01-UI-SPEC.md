@@ -69,14 +69,14 @@ Font family: Inter (via `next/font/google`, subset: latin, latin-ext for ES diac
 
 | Role | Size | Weight | Line Height | Usage |
 |------|------|--------|-------------|-------|
-| Body | 16px | 400 (Regular) | 1.5 | Form helper text, nav labels, general copy |
-| Label | 14px | 500 (Medium) | 1.4 | Form field labels, button text, toggle labels (EN / ES) |
+| Body | 16px | 400 (Regular) | 1.5 | Form helper text, nav labels, general copy, placeholder text |
+| Label | 14px | 600 (Semibold) | 1.4 | Form field labels, button text, toggle labels (EN / ES) |
 | Heading | 24px | 600 (Semibold) | 1.25 | Auth card title ("Welcome to Aquarium Community") |
-| Display | 36px | 700 (Bold) | 1.2 | Reserved — not used in Phase 1 UI (no hero content shipped in Phase 1) |
+| Display | 36px | 600 (Semibold) | 1.2 | Reserved — not used in Phase 1 UI (no hero content shipped in Phase 1) |
 
-Declared weights: 400 Regular, 500 Medium, 600 Semibold, 700 Bold.
+Declared weights: 400 (Regular), 600 (Semibold).
 
-> Note: 500 Medium is required for button and label legibility at 14px. This is the only phase where 4 weights are declared; subsequent phases should consolidate to 2 if possible. The split is justified because the auth UI is the first impression of the platform.
+> Note: Two weights only. 600 Semibold is used for all labels, button text, headings, and OTP digit cells — it renders legibly at 14px without a separate Medium weight. 700 Bold is deferred; Display 36px is not used in Phase 1, so Bold is not needed.
 
 ---
 
@@ -87,6 +87,8 @@ Declared weights: 400 Regular, 500 Medium, 600 Semibold, 700 Bold.
 Two intentional modes: dark (deep water) and light (bright reef). [Source: CONTEXT.md D-21, D-27–D-31]
 
 Colors are defined as CSS custom properties on `:root[data-theme="dark"]` and `:root[data-theme="light"]` in `globals.css`. All Tailwind classes reference these tokens. Per-vertical overrides come from the `tenants` config row — aquariumcommu.com tokens are the defaults.
+
+**Focal point:** Primary visual anchor is the centered auth card, approximately 60% viewport width (`max-w-sm`), rendered with the elevated `--color-surface` background against the deep `--color-bg` page background. The contrast between surface and background draws the eye to the card without any hero imagery.
 
 #### Dark Mode (Deep Water)
 
@@ -140,8 +142,8 @@ The sign-in page is a single unified flow — no separate register page. [Source
 - Loading state (after auto-submit): cells are disabled, show a subtle pulse animation on the primary button
 
 **OAuth buttons:**
-- "Continue with Google" — white/surface background, Google brand logo (SVG inline, 20px), label text 14px medium
-- "Continue with Apple" — inverse (dark fill in dark mode, black in light mode), Apple logo (SVG inline, 20px), label text 14px medium
+- "Continue with Google" — white/surface background, Google brand logo (SVG inline, 20px), label text 14px weight 600
+- "Continue with Apple" — inverse (dark fill in dark mode, black in light mode), Apple logo (SVG inline, 20px), label text 14px weight 600
 - Both buttons: full width, 44px height, border-radius 8px
 
 ### Language Toggle (EN | ES)
@@ -164,6 +166,7 @@ The sign-in page is a single unified flow — no separate register page. [Source
 - Icon: `Moon` (dark mode active) or `Sun` (light mode active) from lucide-react, 20px
 - Touch target: 44px x 44px minimum
 - No label text — icon only
+- `aria-label`: dynamic, reflecting current state — `"Switch to light mode"` when dark mode is active; `"Switch to dark mode"` when light mode is active
 - On click: toggles `data-theme` on `<html>`, writes preference to localStorage immediately
 - Transition: CSS `transition: background-color 200ms ease, color 200ms ease` on `:root` — smooth but not distracting
 
@@ -174,7 +177,7 @@ The sign-in page is a single unified flow — no separate register page. [Source
 - Bottom border: 1px solid `--color-border`
 - Left: tenant logo (SVG or next/image, max-height 32px)
 - Right: EN|ES toggle, theme toggle, sign-in button (logged-out) or user avatar (logged-in)
-- Sign-in button: accent fill, 14px medium, "Sign in" copy
+- Sign-in button: accent fill, 14px weight 600, "Sign in" copy
 
 ### Loading / Skeleton States
 
@@ -210,7 +213,7 @@ All strings must exist in both `messages/en/` and `messages/es/` JSON files. No 
 | OTP resend link | "Resend code" | Appears after 60-second countdown |
 | OTP countdown | "Resend in {seconds}s" | ICU interpolation |
 | Sign-out | "Sign out" | |
-| Nav sign-in button | "Sign in" | |
+| Nav sign-in button | "Sign in" | Two-word verb phrase — intentional exception to single-word CTA convention; universally understood in nav bar context and does not require a noun complement |
 
 ### Error States
 
