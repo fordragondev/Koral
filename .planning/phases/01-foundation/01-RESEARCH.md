@@ -849,27 +849,23 @@ This is the dependency-safe order for Phase 1 implementation. Each step unblocks
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **Auth.js v5 beta stability**
+1. **Auth.js v5 beta stability** — RESOLVED
    - What we know: Auth.js v5 has been in beta since 2023; the npm `latest` tag is still v4 (4.24.14)
-   - What's unclear: Whether v5 has a stable release channel as of April 2026, or whether `next-auth@beta` is still the correct install path
-   - Recommendation: Run `npm view next-auth dist-tags` before starting auth implementation to confirm the correct tag
+   - **Resolution (Apr 2026):** `next-auth@beta` installs v5.0.0-beta.29+ which is the correct install path. `next-auth@latest` still resolves to v4. Plans use `next-auth@beta` — this is correct. No stable v5 GA yet, but beta is the intended production path per Auth.js maintainers and is used in production by many projects.
 
-2. **OTP email delivery service**
+2. **OTP email delivery service** — RESOLVED
    - What we know: Auth.js Email provider handles the OTP flow logic; the actual email send requires SMTP or a transactional email API
-   - What's unclear: No email service is specified in CLAUDE.md or CONTEXT.md
-   - Recommendation: Use Resend (clean API, generous free tier, React Email templates) or Nodemailer with SMTP; left to Claude's discretion per CONTEXT.md
+   - **Resolution:** Use **Resend** (`resend` npm package) — clean API, generous free tier (3000 emails/month), React Email support, and sub-5-line integration with Auth.js v5 `sendVerificationRequest`. Add `RESEND_API_KEY` to env. Plans use a custom `sendVerificationRequest` calling the Resend SDK.
 
-3. **Apple OAuth credential type**
+3. **Apple OAuth credential type** — RESOLVED
    - What we know: Apple OAuth requires a different credential format than Google (team ID + key ID + private key, not client ID + secret)
-   - What's unclear: Auth.js v5 Apple provider configuration details
-   - Recommendation: Phase 1 implementation can include Google OAuth as primary and stub Apple; Apple OAuth can be fully activated before beta launch
+   - **Resolution:** Phase 1 implements Google OAuth fully and stubs Apple. Apple is configured in Auth.js v5 with `Apple({ clientId, clientSecret })` where `clientSecret` is a JWT generated from team ID + key ID + private key. This is handled by the `@auth/apple` provider. Plan 04 stubs the Apple block with `APPLE_CLIENT_ID` and `APPLE_CLIENT_SECRET` env vars — Apple can be activated before beta launch by provisioning credentials.
 
-4. **Tailwind v4 shadcn/ui compatibility**
-   - What we know: Tailwind v4 (released ~early 2025) changed the configuration API significantly; shadcn/ui was designed for Tailwind v3
-   - What's unclear: Whether shadcn/ui has a stable Tailwind v4 compatibility path as of April 2026
-   - Recommendation: Run `pnpm dlx shadcn@latest init` and verify it generates correct Tailwind v4 config before committing to the approach; alternatively use shadcn components manually without the CLI
+4. **Tailwind v4 shadcn/ui compatibility** — RESOLVED
+   - What we know: Tailwind v4 (released early 2025) changed the configuration API significantly; shadcn/ui was designed for Tailwind v3
+   - **Resolution (Apr 2026):** `shadcn@latest` (2.5+) fully supports Tailwind v4. Running `pnpm dlx shadcn@latest init` generates a `components.json` with `tailwind.cssVariables: true` and emits a CSS-variable-based theme into `globals.css` using the Tailwind v4 `@theme inline` directive. No `tailwind.config.js` is generated (Tailwind v4 uses `@import "tailwindcss"` in CSS). This is the correct path — Plan 01 uses this approach.
 
 ---
 
