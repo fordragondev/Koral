@@ -22,9 +22,9 @@ describe('syncTenantToEdgeConfig (TENT-04)', () => {
     await syncTenantToEdgeConfig({ id: 'new-id', slug: 'newslug', domain: 'aquariumcommu.com' });
 
     expect(fetchMock).toHaveBeenCalledTimes(2);
-    const patchCall = fetchMock.mock.calls[1];
+    const patchCall = fetchMock.mock.calls[1]!;
     expect(patchCall[1].method).toBe('PATCH');
-    const body = JSON.parse(patchCall[1].body);
+    const body = JSON.parse(patchCall[1].body as string);
     expect(body.items[0].key).toBe('tenants');
     expect(body.items[0].value['aquariumcommu.com']).toEqual({ id: 'new-id', slug: 'newslug' });
     expect(body.items[0].value['existing.com']).toEqual({ id: 'x', slug: 'x' }); // existing preserved
