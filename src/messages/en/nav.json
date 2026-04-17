@@ -1,8 +1,1 @@
-{
-  "signIn": "Sign in",
-  "signOut": "Sign out",
-  "langToggleEn": "EN",
-  "langToggleEs": "ES",
-  "themeToggleDark": "Dark mode",
-  "themeToggleLight": "Light mode"
-}
+{ "signIn": "Sign in", "signOut": "Sign out", "home": "Home" }
