@@ -17,7 +17,7 @@ export function OtpInput({
     <InputOTP
       maxLength={6}
       value={value}
-      onChange={(v) => {
+      onChange={(v: string) => {
         onChange(v);
         if (v.length === 6) onComplete(v);
       }}
