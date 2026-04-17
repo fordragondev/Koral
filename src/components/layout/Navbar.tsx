@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { getTranslations } from 'next-intl/server';
 import { auth } from '@/server/auth/config';
 import { signOutAction } from '@/server/auth/actions';
@@ -6,7 +6,7 @@ import { getTenant } from '@/server/tenant/resolve';
 import { LangToggle } from './LangToggle';
 import { ThemeToggle } from './ThemeToggle';
 
-export async function Navbar({ locale }: { locale: string }) {
+export async function Navbar({ locale: _locale }: { locale: string }) {
   const [session, tenant, t] = await Promise.all([
     auth(),
     getTenant(),
@@ -22,7 +22,7 @@ export async function Navbar({ locale }: { locale: string }) {
       }}
       aria-label="Primary"
     >
-      <Link href={`/${locale}/`} className="text-[16px] font-semibold" style={{ color: 'var(--color-fg)' }}>
+      <Link href="/" className="text-[16px] font-semibold" style={{ color: 'var(--color-fg)' }}>
         {tenant.name}
       </Link>
       <div className="flex items-center gap-2 md:gap-4">
@@ -40,7 +40,7 @@ export async function Navbar({ locale }: { locale: string }) {
           </form>
         ) : (
           <Link
-            href={`/${locale}/sign-in`}
+            href="/sign-in"
             className="text-[14px] font-semibold px-3 py-2 min-h-[44px]"
             style={{ color: 'var(--color-accent)' }}
           >
