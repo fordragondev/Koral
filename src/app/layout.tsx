@@ -5,23 +5,25 @@ import { auth } from '@/server/auth/config';
 import '@/styles/globals.css';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const tenant = await getTenant();
+  const tenant = await getTenant().catch(() => null);
   return {
-    title: tenant.name,
-    description: tenant.tagline ?? tenant.name,
-    icons: tenant.faviconUrl ? [{ url: tenant.faviconUrl }] : undefined,
+    title: tenant?.name ?? 'Koral',
+    description: tenant?.tagline ?? tenant?.name ?? 'Koral',
+    icons: tenant?.faviconUrl ? [{ url: tenant.faviconUrl }] : undefined,
   };
 }
 
+const FALLBACK_THEME = { bg: '#ffffff', surface: '#f5f5f5', accent: '#0070f3', accentHover: '#0060d3', fg: '#000000', primary: '#0070f3' };
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const [tenant, session] = await Promise.all([getTenant(), auth()]);
+  const [tenant, session] = await Promise.all([getTenant().catch(() => null), auth()]);
   // themeLight / themeDark are stored as jsonb — Drizzle returns them as plain objects
-  const light = (typeof tenant.themeLight === 'string'
-    ? JSON.parse(tenant.themeLight)
-    : tenant.themeLight) as Record<string, string>;
-  const dark = (typeof tenant.themeDark === 'string'
-    ? JSON.parse(tenant.themeDark)
-    : tenant.themeDark) as Record<string, string>;
+  const light = tenant
+    ? (typeof tenant.themeLight === 'string' ? JSON.parse(tenant.themeLight) : tenant.themeLight) as Record<string, string>
+    : FALLBACK_THEME;
+  const dark = tenant
+    ? (typeof tenant.themeDark === 'string' ? JSON.parse(tenant.themeDark) : tenant.themeDark) as Record<string, string>
+    : FALLBACK_THEME;
 
   const css = `
     :root {
