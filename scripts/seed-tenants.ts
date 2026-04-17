@@ -2,7 +2,8 @@
 // Run with: pnpm seed:tenants
 // Inserts/updates two tenants in DB and mirrors them to Edge Config.
 
-import 'dotenv/config';
+import { config } from 'dotenv';
+config({ path: '.env.local' });
 import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 import { eq } from 'drizzle-orm';
