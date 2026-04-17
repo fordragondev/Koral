@@ -6,8 +6,13 @@ export default getRequestConfig(async ({ requestLocale }) => {
   if (!locale || !routing.locales.includes(locale as (typeof routing.locales)[number])) {
     locale = routing.defaultLocale;
   }
+  const [common, nav, auth] = await Promise.all([
+    import(`../messages/${locale}/common.json`).then((m) => m.default),
+    import(`../messages/${locale}/nav.json`).then((m) => m.default),
+    import(`../messages/${locale}/auth.json`).then((m) => m.default),
+  ]);
   return {
     locale,
-    messages: (await import(`../messages/${locale}/common.json`)).default,
+    messages: { common, nav, auth },
   };
 });
