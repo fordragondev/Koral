@@ -46,3 +46,6 @@ pnpm-debug.log*
 
 # Sentry
 .sentryclirc
+
+# Claude Code local
+.claude/
